@@ -5,7 +5,8 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const wiredep = require('wiredep').stream;
 
-const jasmine = require('gulp-jasmine');
+const testServer = require('karma').Server;
+
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -75,7 +76,8 @@ gulp.task('images', () => {
 });
 
 gulp.task('fonts', () => {
-  return gulp.src(require('main-bower-files')('**/*.{eot,svg,ttf,woff,woff2}', function (err) {})
+  return gulp.src(require('main-bower-files')('**/*.{eot,svg,ttf,woff,woff2}', function (err) {
+    })
     .concat('app/fonts/**/*'))
     .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
@@ -92,7 +94,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
+gulp.task('serve', ['styles', 'scripts', 'fonts', 'test'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -128,11 +130,14 @@ gulp.task('serve:dist', () => {
 });
 
 
-
-gulp.task('test', () =>
-  gulp.src('test/spec/**/*.js')
-    .pipe(jasmine())
-);
+gulp.task('test', function (done) {
+  new testServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false
+  }, function(){
+    done();
+  }).start();
+});
 
 // inject bower components
 gulp.task('wiredep', () => {

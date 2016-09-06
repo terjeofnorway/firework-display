@@ -1,5 +1,4 @@
 (function () {
-  'use strict';
 
   describe('Test suite rig', function () {
 
