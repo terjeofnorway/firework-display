@@ -5,6 +5,8 @@ const browserSync = require('browser-sync');
 const del = require('del');
 const wiredep = require('wiredep').stream;
 
+const jasmine = require('gulp-jasmine');
+
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
@@ -114,6 +116,7 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
+
 gulp.task('serve:dist', () => {
   browserSync({
     notify: false,
@@ -124,24 +127,12 @@ gulp.task('serve:dist', () => {
   });
 });
 
-gulp.task('serve:test', ['scripts'], () => {
-  browserSync({
-    notify: false,
-    port: 9000,
-    ui: false,
-    server: {
-      baseDir: 'test',
-      routes: {
-        '/scripts': '.tmp/scripts',
-        '/bower_components': 'bower_components'
-      }
-    }
-  });
 
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
-  gulp.watch('test/spec/**/*.js').on('change', reload);
-  gulp.watch('test/spec/**/*.js', ['lint:test']);
-});
+
+gulp.task('test', () =>
+  gulp.src('test/spec/**/*.js')
+    .pipe(jasmine())
+);
 
 // inject bower components
 gulp.task('wiredep', () => {
