@@ -2,6 +2,7 @@ module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
     frameworks: ['jasmine'],
+    logLevel: config.LOG_DEBUG,
     files: [
       'app/scripts/*.js',
       'test/**/*.spec.js'
