@@ -24,28 +24,28 @@
       it('should only allow arrays', function () {
 
         let position = 'foo';
-        expect(launchPad.setPosition(position)).toBe(false);
+        expect(function(){launchPad.position = position}).toThrowError('INVALID_POSITION_ARRAY');
       });
 
       it('should only allow arrays of 2 elements', function () {
         let position = [1, 2, 3];
-        expect(launchPad.setPosition(position)).toBe(false);
+        expect(function(){launchPad.position = position}).toThrowError('INVALID_POSITION_ARRAY');
 
         position = [1];
-        expect(launchPad.setPosition(position)).toBe(false);
+        expect(function(){launchPad.position = position}).toThrowError('INVALID_POSITION_ARRAY');
 
         position = [1, 2];
-        expect(launchPad.setPosition(position)).toBe(true);
+        expect(launchPad.position = position).toEqual(position);
 
       });
 
 
       it('should remember the position of the launch pad', function () {
 
-        launchPad.setPosition(assignedPosition);
+        launchPad.position = assignedPosition;
 
-        let newPosition = launchPad.getPosition();
-        expect(newPosition).toBe(assignedPosition);
+        let newPosition = launchPad.position;
+        expect(newPosition).toEqual(assignedPosition);
 
       });
     });

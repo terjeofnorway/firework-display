@@ -9,18 +9,18 @@ class LaunchPad {
   }
 
 
-  setPosition(pos){
+  set position(pos){
 
-    if(!Array.isArray(pos)) {return false;}
-    if(pos.length > 2) {return false;}
-    if(pos.length < 2) {return false;}
+    if(!Array.isArray(pos)) {throw new Error('INVALID_POSITION_ARRAY')}
+    if(pos.length > 2) {throw new Error('INVALID_POSITION_ARRAY')}
+    if(pos.length < 2) {throw new Error('INVALID_POSITION_ARRAY')}
 
     this._position = pos;
     return true;
   }
 
 
-  getPosition(){
+  get position(){
     return this._position;
   }
 }
