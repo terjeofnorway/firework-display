@@ -26,21 +26,88 @@
         expect(oldTick).toBeLessThan(newTick);
       });
 
-      it('should return its position as array.', function(){
-        let position = rocket.position;
 
-        expect(Array.isArray(position)).toEqual(true);
+      it('should only allow valid positions', function () {
+        let invalidPositions = [
+          'foo',
+          1,
+          [1],
+          [1,2,3],
+          []
+        ];
+
+        let validPositions = [
+          [0,0],
+          [100,100],
+          [120.44532, 244.0392134]
+        ];
+
+        for(let pos of invalidPositions){
+          expect(function(){rocket.position = pos}).toThrowError('INVALID_POSITION');
+        }
+
+
+        for(let pos of validPositions){
+          rocket.position = pos;
+          expect(rocket.position).toEqual(pos);
+        }
+
       });
 
-      it('should remember and return its position.', function(){
-        let fauxPosition,
-          currentPosition;
 
-        fauxPosition = [100,100];
-        rocket.position = fauxPosition;
-        currentPosition = rocket.position;
+      it('should only allow valid thrust', function(){
 
-        expect(fauxPosition).toEqual(currentPosition);
+        let invalidThrust = [
+          'foo',
+          1,
+          [1],
+          [1,2,3],
+          []
+        ];
+
+        let validThrust = [
+          [0,0],
+          [100,100],
+          [120.44532, 244.0392134]
+        ];
+
+        for (let thrust of invalidThrust){
+          expect(function(){rocket.thrust = thrust}).toThrowError('INVALID_THRUST');
+        };
+
+        for (let thrust of validThrust){
+          rocket.thrust = thrust;
+          expect(rocket.thrust).toEqual(thrust);
+        };
+
+      });
+
+
+
+      it('should set and remember drag', function(){
+        let invalidDrag = [
+          'foo',
+          1,
+          [1],
+          [1,2,3],
+          []
+        ];
+
+        let validDrag = [
+          [0,0],
+          [100,100],
+          [120.44532, 244.0392134]
+        ];
+
+        for (let drag of invalidDrag){
+          expect(function(){rocket.drag = drag}).toThrowError('INVALID_DRAG');
+        };
+
+        for (let drag of validDrag){
+          rocket.drag = drag;
+          expect(rocket.drag).toEqual(drag);
+        };
+
       });
 
     })

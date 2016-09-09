@@ -4,6 +4,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     logLevel: config.LOG_DEBUG,
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'app/scripts/*.js',
       'test/**/*.spec.js'
     ],
