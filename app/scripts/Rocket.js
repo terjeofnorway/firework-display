@@ -2,6 +2,7 @@
  * Created by terjekarlsen on 08.09.2016.
  */
 
+
 class Rocket {
 
   constructor(){
@@ -9,12 +10,17 @@ class Rocket {
     this._position = [0,0];
     this._thrust = [0,0];
     this._drag = [-1,-1];
-    this._vector = [0,0];
+    this._vector = new SpeedVector();
+    this._isIgnited = false;
 
   }
 
   tick(){
     this._tick++;
+
+    if(this._isIgnited){
+      this.position[0];
+    }
   }
 
   /** Get the current position of the rocket
@@ -74,6 +80,10 @@ class Rocket {
     return this._drag;;
   }
 
+
+  ignite(){
+    this._isIgnited = true;
+  }
 
 
 

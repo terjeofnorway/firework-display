@@ -5,7 +5,7 @@ module.exports = function(config) {
     logLevel: config.LOG_DEBUG,
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
-      'app/scripts/*.js',
+      'app/scripts/**/*.js',
       'test/**/*.spec.js'
     ],
     preprocessors: {

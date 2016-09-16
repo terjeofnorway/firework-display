@@ -84,7 +84,7 @@
 
 
 
-      it('should set and remember drag', function(){
+      it('should only allow valid drag', function(){
         let invalidDrag = [
           'foo',
           1,
@@ -107,6 +107,18 @@
           rocket.drag = drag;
           expect(rocket.drag).toEqual(drag);
         };
+
+      });
+
+      it('should move according to thrust and drag', function(){
+        rocket.position = [0,0];
+        rocket.thrust = [1,1];
+        rocket.drag = [1,1];
+
+        rocket.ignite();
+        rocket.tick();
+
+        //expect(rocket.position).toBe([3,3]);
 
       });
 
