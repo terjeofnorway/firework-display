@@ -2,7 +2,7 @@
 
 class Paintable extends Tickable {
 
-  constructor(color='000000', width=0, height=0) {
+  constructor(color='#000000', width=0, height=0) {
     super();
     this._color = color;
     this._width = width;

@@ -38,9 +38,15 @@ class Ticker {
    *
    */
   tick() {
+    this._tickableObjectsArray.forEach((object,index) =>{
+      object.tick();
+    });
+
+    let paintEvent = new CustomEvent('REPAINT_CANVAS',{'detail':this._tickableObjectsArray});
+    document.dispatchEvent(paintEvent);
 
     // Set timeout
-    setTimeout(this.tick.bind(this), 1000);
+    setTimeout(this.tick.bind(this), 300);
 
   }
 }

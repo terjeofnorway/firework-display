@@ -3,10 +3,10 @@
  */
 
 
-class LaunchPad extends Tickable {
+class LaunchPad extends Paintable {
 
-  constructor(){
-    super();
+  constructor(color, width, height){
+    super(color, width, height);
     this._position = [0,0];
   }
 
@@ -30,5 +30,9 @@ class LaunchPad extends Tickable {
      */
   get position(){
     return this._position;
+  }
+
+  tick(){
+
   }
 }

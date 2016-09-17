@@ -2,9 +2,10 @@ class Application {
 
   constructor() {
 
+    this.createPainter();
+
     this.createTicker();
 
-    this.createPainter();
 
     this.placeLaunchPad();
   }
@@ -29,10 +30,8 @@ class Application {
    *
    */
   placeLaunchPad() {
-    let launchPad = new LaunchPad();
-    launchPad.position = [100, 100];
+    let launchPad = new LaunchPad('#ff0000',40,10);
+    launchPad.position = [(document.body.clientWidth/2), document.body.clientHeight-10];
   }
-
-
 
 }
