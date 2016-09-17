@@ -1,38 +1,27 @@
 class Application {
 
   constructor() {
-    this._tickArray = new Array();
 
+    this.createTicker();
 
-    this.prepareTick();
+    this.createPainter();
 
-    this.addCanvasToDocument();
     this.placeLaunchPad();
-
-
   }
 
 
-  /** Create a canvas to be returned to caller
+  /** create an instance of the Painter
    *
-   * @returns {Element}
    */
-  createCanvas() {
-    let canvas = document.createElement('canvas');
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
-    canvas.style.backgroundColor = '#ff0000';
-
-    return canvas;
+  createPainter () {
+    this._painter = new Painter();
   }
 
-  /** Add the created canvas to the DOM document
+  /** Create an instance of the Ticker
    *
-   * @returns {Element}
    */
-  addCanvasToDocument() {
-    let canvas = this.createCanvas();
-    document.body.appendChild(canvas);
+  createTicker () {
+    this._ticker = new Ticker();
   }
 
 
@@ -44,30 +33,6 @@ class Application {
     launchPad.position = [100, 100];
   }
 
-  prepareTick() {
-    document.addEventListener('ADD_TICKABLE_OBJECT', this.addTickableObject.bind(this));
-    document.addEventListener('REMOVE_TICKABLE_OBJECT', this.removeTickableObject);
 
-    this.tick();
-  }
-
-  addTickableObject(e) {
-
-    let tickableObject = e.detail;
-
-    this._tickArray.push(tickableObject);
-
-  }
-
-  removeTickableObject(e) {
-
-  }
-
-  tick() {
-
-    // Set timeout
-    setTimeout(this.tick.bind(this), 1000);
-
-  }
 
 }

@@ -1,4 +1,4 @@
-class Tickable {
+class Tickable{
 
   constructor(){
     this.addAsTickable();

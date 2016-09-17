@@ -3,9 +3,10 @@
  */
 
 
-class Rocket {
+class Rocket extends Paintable {
 
   constructor(){
+    super();
     this._tick = 0;
     this._position = [0,0];
     this._thrust = [0,0];

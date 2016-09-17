@@ -5,10 +5,12 @@ module.exports = function(config) {
     logLevel: config.LOG_DEBUG,
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
+      'app/scripts/Base/Tickable.js',
       'app/scripts/**/*.js',
       'test/**/*.spec.js'
     ],
     preprocessors: {
+      'app/scripts/Base/Tickable.js': ['babel'],
       'app/scripts/**/*.js': ['babel'],
       'test/**/*.spec.js': ['babel']
     },
