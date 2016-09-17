@@ -36,6 +36,9 @@ class Application {
   }
 
 
+  /** Place a launchPad somewhere at the ground
+   *
+   */
   placeLaunchPad() {
     let launchPad = new LaunchPad();
     launchPad.position = [100, 100];
@@ -61,8 +64,8 @@ class Application {
   }
 
   tick() {
-    console.log('tick');
 
+    // Set timeout
     setTimeout(this.tick.bind(this), 1000);
 
   }
