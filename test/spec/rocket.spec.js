@@ -82,8 +82,6 @@
 
       });
 
-
-
       it('should only allow valid drag', function(){
         let invalidDrag = [
           'foo',
@@ -110,20 +108,26 @@
 
       });
 
+      it('should ignite', () => {
+        rocket.ignite();
+        expect(rocket._isIgnited).toBe(true);
+      });
+
+
       it('should move according to thrust and drag', function(){
         rocket.position = [0,0];
-        rocket.thrust = [1,1];
-        rocket.drag = [1,1];
+        rocket.thrust = [2,20];
+        rocket.drag = [-1,-1];
 
         rocket.ignite();
         rocket.tick();
 
-        //expect(rocket.position).toBe([3,3]);
-
+        expect(rocket.position[0]).toBeGreaterThan(0);
+        expect(rocket.position[1]).toBeGreaterThan(0);
       });
 
-    })
+    });
 
-  })
+  });
 
 })();

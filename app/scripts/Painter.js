@@ -47,7 +47,6 @@ class Painter {
   paintObjectOnCanvas (object){
     this._canvasContext.fillStyle = object.color;
     this._canvasContext.fillRect(object.position[0],object.position[1],object.width,object.height);
-    //this._canvasContext.fillRect(100,100,50,50);
   }
 
 

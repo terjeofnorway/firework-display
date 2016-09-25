@@ -8,6 +8,10 @@ class LaunchPad extends Paintable {
   constructor(color, width, height){
     super(color, width, height);
     this._position = [0,0];
+    this._armedRockets = [];
+
+    this.rigRocket();
+    this.launchRocket(0);
   }
 
   /** Set the position of the launcpad. Position is
@@ -30,6 +34,26 @@ class LaunchPad extends Paintable {
      */
   get position(){
     return this._position;
+  }
+
+  /** Rig the rocket and add it to the 'armed list', which
+   * is basically rockets available for ignition
+   */
+  rigRocket(){
+    let rocket = new Rocket();
+    this._armedRockets.push(rocket);
+
+    return rocket;
+  }
+
+  launchRocket(number){
+    if(number == undefined){
+      number = this._armedRockets.length-1;
+    }
+    this._armedRockets[number].ignite;
+    this._armedRockets.splice(number,1);
+
+    return number;
   }
 
   tick(){

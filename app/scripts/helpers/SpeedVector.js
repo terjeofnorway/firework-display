@@ -28,7 +28,6 @@ class SpeedVector {
     this._ySpeed += deltaY / 2;
     this._xSpeed += deltaX / 2;
 
-
   }
 
 }

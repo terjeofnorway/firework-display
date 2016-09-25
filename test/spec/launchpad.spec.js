@@ -48,6 +48,37 @@
         expect(newPosition).toEqual(assignedPosition);
 
       });
+
+      it('should a rig rocket', function(){
+        let rocket = launchPad.rigRocket();
+
+        expect(rocket instanceof Rocket).toBe(true);
+
+      });
+
+      it('should launch the last rocket if no pos in armedRockets array is given', function(){
+        launchPad.rigRocket();
+        launchPad.rigRocket();
+        launchPad.rigRocket();
+
+        var rocketPos = launchPad.launchRocket();
+
+        expect(rocketPos).toBe(2);
+      });
+
+      it('should remove rocket from armed list when launched', function(){
+        launchPad.rigRocket();
+        launchPad.rigRocket();
+        launchPad.rigRocket();
+
+        launchPad.launchRocket(0);
+
+        expect(launchPad._armedRockets.length).toBe(2);
+
+      });
+
+
+
     });
 
   });

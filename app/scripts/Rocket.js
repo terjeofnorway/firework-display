@@ -5,8 +5,8 @@
 
 class Rocket extends Paintable {
 
-  constructor(){
-    super();
+  constructor(color, width, height){
+    super(color, width, height);
     this._tick = 0;
     this._position = [0,0];
     this._thrust = [0,0];
@@ -20,9 +20,24 @@ class Rocket extends Paintable {
     this._tick++;
 
     if(this._isIgnited){
-      this.position[0];
+      // First update the rockets speed vector, then
+      // update its next position based on the speed vector.
+      this._vector.update(this.thrust, this.drag);
+      this.updatePositionBasedOnVector();
     }
   }
+
+
+  /** Updates the speed vector by one increment based on
+   * drag, thrust and gravity
+   */
+  updatePositionBasedOnVector(){
+    let position = this.position;
+
+    position[0] += this._vector.vector[0];
+    position[1] += this._vector.vector[1];
+  }
+
 
   /** Get the current position of the rocket
    *
