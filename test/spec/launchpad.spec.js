@@ -7,6 +7,7 @@
     let launchPad;
     let assignedPosition = [50, 50];
 
+
     beforeEach(function () {
       launchPad = new LaunchPad();
     });

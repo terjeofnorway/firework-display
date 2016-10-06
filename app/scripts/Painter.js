@@ -39,6 +39,8 @@ class Painter {
   repaintCanvas (e) {
     let _paintableObjectsArray = e.detail;
 
+    this.clearCanvas();
+
     _paintableObjectsArray.forEach((obj) => {
       this.paintObjectOnCanvas(obj);
     })
@@ -47,8 +49,14 @@ class Painter {
   paintObjectOnCanvas (object){
     this._canvasContext.fillStyle = object.color;
     this._canvasContext.fillRect(object.position[0],object.position[1],object.width,object.height);
+
   }
 
+  clearCanvas () {
+    this._canvasContext.fillStyle = '#ffffff';
+
+    this._canvasContext.fillRect(0,0,document.body.clientWidth, document.body.clientHeight);
+  }
 
 
 }

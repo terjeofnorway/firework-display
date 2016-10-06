@@ -40,7 +40,9 @@ class LaunchPad extends Paintable {
    * is basically rockets available for ignition
    */
   rigRocket(){
-    let rocket = new Rocket();
+    let rocket = new Rocket('#00ff00', 10,20);
+    rocket.position = this.position;
+
     this._armedRockets.push(rocket);
 
     return rocket;
@@ -50,13 +52,15 @@ class LaunchPad extends Paintable {
     if(number == undefined){
       number = this._armedRockets.length-1;
     }
-    this._armedRockets[number].ignite;
+
+    this._armedRockets[number].ignite();
     this._armedRockets.splice(number,1);
 
     return number;
   }
 
   tick(){
+
 
   }
 }

@@ -19,11 +19,13 @@ class Rocket extends Paintable {
   tick(){
     this._tick++;
 
+
     if(this._isIgnited){
       // First update the rockets speed vector, then
       // update its next position based on the speed vector.
       this._vector.update(this.thrust, this.drag);
       this.updatePositionBasedOnVector();
+
     }
   }
 
@@ -55,6 +57,7 @@ class Rocket extends Paintable {
     if(!Array.isArray(pos)) { throw new Error('INVALID_POSITION')}
     if(pos.length < 2 || pos.length > 2) {throw new Error('INVALID_POSITION')}
     this._position = pos;
+
   }
 
 
