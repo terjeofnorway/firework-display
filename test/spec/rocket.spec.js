@@ -43,7 +43,7 @@
         ];
 
         for(let pos of invalidPositions){
-          expect(function(){rocket.position = pos}).toThrowError('INVALID_POSITION');
+          expect(function(){rocket.position = pos}).toThrowError('INVALID_POSITION_ARRAY');
         }
 
 

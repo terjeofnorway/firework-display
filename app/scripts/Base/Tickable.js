@@ -9,7 +9,6 @@ class Tickable{
    */
   die() {
     this.removeAsTickabke();
-
   }
 
   /** Ticks the object state by 1 tick
@@ -39,3 +38,4 @@ class Tickable{
   }
 
 }
+
