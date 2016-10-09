@@ -9,8 +9,7 @@ class Rocket extends Paintable {
   constructor(color, width, height){
     super(color, width, height);
     this._tick = 0;
-    this._thrust = [0,-2];
-    this._drag = [0,0];
+    this._thrust = [0,10];
     this._vector = new SpeedVector();
     this._isIgnited = false;
 
@@ -34,7 +33,7 @@ class Rocket extends Paintable {
    */
   updatePositionBasedOnVector(){
     let p1 = this.position[0] + this._vector.vector[0];
-    let p2 = this.position[1] + this._vector.vector[1] + Physics.GRAVITY;
+    let p2 = this.position[1] + this._vector.vector[1];
 
     this.position = [p1, p2];
   }
@@ -62,24 +61,16 @@ class Rocket extends Paintable {
   }
 
 
-  /** Set the drag
-   *
-   * @param drag
-     */
-  set drag(drag) {
-    if(!Array.isArray(drag)) { throw new Error('INVALID_DRAG')}
-    if(drag.length < 2 || drag.length > 2) {throw new Error('INVALID_DRAG')}
-    this._drag = drag;
-  }
 
-  /** Get the drag
-   *
-   * @returns {Array|The drag vector represented by X Y}
-     */
-  get drag() {
-    return this._drag;;
-  }
+  burnFuel(){
+    let fX = this._thrust[0];
+    let fY = this._thrust[1];
 
+    fX = Math.max(0,fX-0.05);
+    fY = Math.max(0,fY-0.05);
+
+    this.thrust = [fX,fY];
+  }
 
   ignite(){
     this._isIgnited = true;

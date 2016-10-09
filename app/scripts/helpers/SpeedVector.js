@@ -20,10 +20,10 @@ class SpeedVector {
    * @param thrust
    * @param drag
      */
-  update(thrust, drag){
+  update(thrust){
 
-    let deltaX = thrust[0] + drag[0];
-    let deltaY = thrust[1] + drag[1] + Physics.GRAVITY;
+    let deltaX = thrust[0] * -1;
+    let deltaY = (thrust[1] * -1) + Physics.GRAVITY;
 
     this._ySpeed += deltaY / 2;
     this._xSpeed += deltaX / 2;

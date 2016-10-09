@@ -15,14 +15,13 @@
       let beforeVector = speedVector.vector;
 
       let thrust = [10,10];
-      let drag = [-5,-5];
 
-      speedVector.update(thrust, drag);
+      speedVector.update(thrust);
 
       let afterVector = speedVector.vector;
 
-      expect(afterVector[0]).toBeGreaterThan(beforeVector[0]);
-      expect(afterVector[1]).toBeGreaterThan(beforeVector[1]);
+      expect(afterVector[0]).toBeLessThan(beforeVector[0]);
+      expect(afterVector[1]).toBeLessThan(beforeVector[1]);
     });
   });
 

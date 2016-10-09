@@ -82,31 +82,6 @@
 
       });
 
-      it('should only allow valid drag', function(){
-        let invalidDrag = [
-          'foo',
-          1,
-          [1],
-          [1,2,3],
-          []
-        ];
-
-        let validDrag = [
-          [0,0],
-          [100,100],
-          [120.44532, 244.0392134]
-        ];
-
-        for (let drag of invalidDrag){
-          expect(function(){rocket.drag = drag}).toThrowError('INVALID_DRAG');
-        };
-
-        for (let drag of validDrag){
-          rocket.drag = drag;
-          expect(rocket.drag).toEqual(drag);
-        };
-
-      });
 
       it('should ignite', () => {
         rocket.ignite();
@@ -114,16 +89,27 @@
       });
 
 
-      it('should move according to thrust and drag', function(){
+      it('should move according to thrust', function(){
         rocket.position = [0,0];
         rocket.thrust = [2,20];
-        rocket.drag = [-1,-1];
 
         rocket.ignite();
         rocket.tick();
 
-        expect(rocket.position[0]).toBeGreaterThan(0);
-        expect(rocket.position[1]).toBeGreaterThan(0);
+        expect(rocket.position[0]).toBeLessThan(0);
+        expect(rocket.position[1]).toBeLessThan(0);
+      });
+
+
+      it('should burn fuel', function(){
+        let thrustX = rocket.thrust[0];
+        let thrustY = rocket.thrust[1];
+
+        rocket.burnFuel();
+
+        expect(rocket.thrust[0]).toBeLessThanOrEqual(Math.max(0, thrustX));
+        expect(rocket.thrust[1]).toBeLessThanOrEqual(Math.max(0, thrustY));
+
       });
 
     });
