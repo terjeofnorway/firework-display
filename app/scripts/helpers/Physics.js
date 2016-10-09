@@ -1,6 +1,6 @@
 class Physics {
 
   static get GRAVITY() {
-    return -1;
+    return -2;
   }
 }

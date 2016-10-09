@@ -9,7 +9,7 @@ class Rocket extends Paintable {
   constructor(color, width, height){
     super(color, width, height);
     this._tick = 0;
-    this._thrust = [0,10];
+    this._thrust = [0.2,3.5];
     this._vector = new SpeedVector();
     this._isIgnited = false;
 
@@ -22,8 +22,9 @@ class Rocket extends Paintable {
     if(this._isIgnited){
       // First update the rockets speed vector, then
       // update its next position based on the speed vector.
-      this._vector.update(this.thrust, this.drag);
+      this._vector.update(this.thrust);
       this.updatePositionBasedOnVector();
+      this.burnFuel();
     }
   }
 
@@ -37,8 +38,6 @@ class Rocket extends Paintable {
 
     this.position = [p1, p2];
   }
-
-
 
 
   /** Set the thrust of the rocket

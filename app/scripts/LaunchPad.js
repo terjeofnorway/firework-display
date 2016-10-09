@@ -8,7 +8,8 @@ class LaunchPad extends Paintable {
   constructor(color, width, height) {
     super(color, width, height);
     this._armedRockets = [];
-    this._rocketIsFired = false;
+    this._rocketInterval = 60;
+    this._rocketIntervalCount = 0;
   }
 
 
@@ -17,7 +18,7 @@ class LaunchPad extends Paintable {
    * is basically rockets available for ignition
    */
   rigRocket() {
-    let rocket = new Rocket('#00ff00', 10, 20);
+    let rocket = new Rocket('#00ff00', 2, 5);
     rocket.position = this.position;
 
 
@@ -38,10 +39,14 @@ class LaunchPad extends Paintable {
   }
 
   tick() {
-    if (!this._rocketIsFired) {
+    if (this._rocketIntervalCount < 0) {
       this.rigRocket();
+
+      this.r
       this.launchRocket(0);
-      this._rocketIsFired = true;
+      this._rocketIntervalCount = this._rocketInterval;
     }
+
+    this._rocketIntervalCount -=1;
   }
 }

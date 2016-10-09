@@ -53,7 +53,7 @@ class Painter {
   }
 
   clearCanvas () {
-    this._canvasContext.fillStyle = '#ffffff';
+    this._canvasContext.fillStyle = '#000000';
     this._canvasContext.fillRect(0,0,document.body.clientWidth, document.body.clientHeight);
   }
 

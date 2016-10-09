@@ -23,7 +23,7 @@ class SpeedVector {
   update(thrust){
 
     let deltaX = thrust[0] * -1;
-    let deltaY = (thrust[1] * -1) + Physics.GRAVITY;
+    let deltaY = (thrust[1] * -1) + (Physics.GRAVITY * -1);
 
     this._ySpeed += deltaY / 2;
     this._xSpeed += deltaX / 2;

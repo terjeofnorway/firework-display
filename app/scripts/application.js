@@ -30,7 +30,7 @@ class Application {
    *
    */
   placeLaunchPad() {
-    let launchPad = new LaunchPad('#ff00ff',40,10);
+    let launchPad = new LaunchPad('#eeeeee',40,5);
     launchPad.position = [(document.body.clientWidth/2), document.body.clientHeight-10];
   }
 

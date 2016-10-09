@@ -46,7 +46,7 @@ class Ticker {
     document.dispatchEvent(paintEvent);
 
     // Set timeout
-    setTimeout(this.tick.bind(this), 300);
+    setTimeout(this.tick.bind(this), 50);
 
   }
 }
