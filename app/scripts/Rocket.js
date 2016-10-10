@@ -9,7 +9,8 @@ class Rocket extends Paintable {
   constructor(color, width, height){
     super(color, width, height);
     this._tick = 0;
-    this._thrust = [0.2,2.4];
+    this._thrust = 2;
+    this._fuel = 0;
     this._vector = new SpeedVector();
     this._isIgnited = false;
 
@@ -18,12 +19,12 @@ class Rocket extends Paintable {
   tick(){
     this._tick++;
 
-
     if(this._isIgnited){
       // First update the rockets speed vector, then
       // update its next position based on the speed vector.
       this._vector.update(this.thrust);
       this.updatePositionBasedOnVector();
+      this.updateThrust();
       this.burnFuel();
     }
   }
@@ -40,13 +41,22 @@ class Rocket extends Paintable {
   }
 
 
+
+  /** Set the thrust of the rocket
+   *
+   * @param thrust
+   */
+  updateThrust() {
+    this._thrust = this.fuel * 0.04;
+  }
+
   /** Set the thrust of the rocket
    *
    * @param thrust
      */
   set thrust(thrust) {
-    if(!Array.isArray(thrust)) { throw new Error('INVALID_THRUST')}
-    if(thrust.length < 2 || thrust.length > 2) {throw new Error('INVALID_THRUST')}
+    if(typeof(thrust) != 'number') { throw new Error('INVALID_THRUST')}
+
     this._thrust = thrust;
   }
 
@@ -59,18 +69,27 @@ class Rocket extends Paintable {
     return this._thrust;
   }
 
-
-
-  burnFuel(){
-    let fX = this._thrust[0];
-    let fY = this._thrust[1];
-
-    fX = Math.max(0,fX-0.05);
-    fY = Math.max(0,fY-0.05);
-
-    this.thrust = [fX,fY];
+  set fuel(fuel){
+    if(typeof(fuel) != 'number'){ throw new Error('INVALID_FUEL')}
+    this._fuel = fuel;
   }
 
+  get fuel(){
+    return this._fuel;
+  }
+
+
+
+  /** Burn off some fuel
+   *
+   */
+  burnFuel(){
+    this.fuel -=1;
+  }
+
+  /** Igniting the rocked will allow for ticking
+   *
+   */
   ignite(){
     this._isIgnited = true;
   }

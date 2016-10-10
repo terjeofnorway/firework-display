@@ -59,16 +59,15 @@
 
         let invalidThrust = [
           'foo',
-          1,
           [1],
           [1,2,3],
           []
         ];
 
         let validThrust = [
-          [0,0],
-          [100,100],
-          [120.44532, 244.0392134]
+          1,
+          2,
+          3
         ];
 
         for (let thrust of invalidThrust){
@@ -82,33 +81,67 @@
 
       });
 
+      it('should only allow valid fuel', function(){
+
+        let invalidFuel = [
+          'foo',
+          [1],
+          [1,2,3],
+          []
+        ];
+
+        let validFuel = [
+          1,
+          2,
+          3
+        ];
+
+        for (let fuel of invalidFuel){
+          expect(function(){rocket.fuel = fuel}).toThrowError('INVALID_FUEL');
+        };
+
+        for (let fuel of validFuel){
+          rocket.fuel = fuel;
+          expect(rocket.fuel).toEqual(fuel);
+        };
+
+      });
+
 
       it('should ignite', () => {
         rocket.ignite();
         expect(rocket._isIgnited).toBe(true);
       });
 
+      it('should update thrust', () => {
+        rocket.fuel = 100;
+        rocket.thrust = 0;
+
+        rocket.updateThrust();
+
+        expect(rocket.thrust).toBeGreaterThan(0);
+
+      });
+
 
       it('should move according to thrust', function(){
         rocket.position = [0,0];
-        rocket.thrust = [2,20];
+        rocket.thrust = 3;
 
         rocket.ignite();
         rocket.tick();
 
-        expect(rocket.position[0]).toBeLessThan(0);
         expect(rocket.position[1]).toBeLessThan(0);
       });
 
 
       it('should burn fuel', function(){
-        let thrustX = rocket.thrust[0];
-        let thrustY = rocket.thrust[1];
+        let beforeFuel = 3;
+        rocket.fuel = beforeFuel;
 
         rocket.burnFuel();
 
-        expect(rocket.thrust[0]).toBeLessThanOrEqual(Math.max(0, thrustX));
-        expect(rocket.thrust[1]).toBeLessThanOrEqual(Math.max(0, thrustY));
+        expect(rocket.fuel).toBeLessThanOrEqual(Math.max(0, beforeFuel));
 
       });
 
