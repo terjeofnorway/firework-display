@@ -50,34 +50,17 @@
 
       });
 
-      it('should a rig rocket', function(){
-        let rocket = launchPad.rigRocket();
+      it('should launch a rocket', function(){
+        let tickTarget;
 
-        expect(rocket instanceof Rocket).toBe(true);
+        document.addEventListener('ADD_TICKABLE_OBJECT', (e) => {
+          tickTarget = e.detail;
+        });
 
+        launchPad.launchRocket();
+
+        expect(tickTarget instanceof Rocket).toBe(true);
       });
-
-      it('should launch the last rocket if no pos in armedRockets array is given', function(){
-        launchPad.rigRocket();
-        launchPad.rigRocket();
-        launchPad.rigRocket();
-
-        var rocketPos = launchPad.launchRocket();
-
-        expect(rocketPos).toBe(2);
-      });
-
-      it('should remove rocket from armed list when launched', function(){
-        launchPad.rigRocket();
-        launchPad.rigRocket();
-        launchPad.rigRocket();
-
-        launchPad.launchRocket(0);
-
-        expect(launchPad._armedRockets.length).toBe(2);
-
-      });
-
 
 
     });

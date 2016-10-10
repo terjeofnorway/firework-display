@@ -9,7 +9,7 @@ class Rocket extends Paintable {
   constructor(color, width, height){
     super(color, width, height);
     this._tick = 0;
-    this._thrust = [0.2,3.5];
+    this._thrust = [0.2,2.4];
     this._vector = new SpeedVector();
     this._isIgnited = false;
 

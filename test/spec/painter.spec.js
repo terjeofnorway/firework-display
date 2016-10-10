@@ -1,6 +1,6 @@
 (function () {
 
-  describe('Test application bootstrapping', () => {
+  describe('Test the Painter', () => {
       let application;
       let painter;
 
@@ -16,19 +16,16 @@
 
     it('should clear the entire canvas', () => {
 
-      painter._canvasContext.fillStyle = '#000000';
+      painter._canvasContext.fillStyle = '#ffffff';
       painter._canvasContext.fillRect(0,0,100, 100);
 
       painter.clearCanvas();
 
-
       let imageData = painter._canvasContext.getImageData(10,10,1,1).data;
 
-      console.log(imageData);
-
-      expect(imageData[0]).toBe(255);
-      expect(imageData[1]).toBe(255);
-      expect(imageData[2]).toBe(255);
+      expect(imageData[0]).toBe(0);
+      expect(imageData[1]).toBe(0);
+      expect(imageData[2]).toBe(0);
     })
 
 
