@@ -151,6 +151,15 @@
         expect(rocket._life).toBe(previousLife-1);
       });
 
+      it('should explode', function(){
+        spyOn(rocket,'explode').and.callThrough();
+
+        rocket._life = 0;
+        rocket.tick();
+
+        expect(rocket.explode).toHaveBeenCalled();
+      });
+
 
     });
 

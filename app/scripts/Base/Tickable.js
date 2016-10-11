@@ -2,6 +2,8 @@ class Tickable{
 
   constructor(){
     this.addAsTickable();
+
+    this._tick = 0;
   }
 
   /** The object is ready to die and stops being tickable

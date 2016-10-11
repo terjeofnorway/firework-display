@@ -8,13 +8,13 @@ class Rocket extends Paintable {
 
   constructor(color, width, height){
     super(color, width, height);
-    this._tick = 0;
+
     this._thrust = 2;
     this._fuel = 0;
     this._life = 100;
-    this._vector = new SpeedVector();
+    this._weight = 0.5
+    this._vector = new SpeedVector(this._weight);
     this._isIgnited = false;
-
   }
 
   tick(){
@@ -31,6 +31,7 @@ class Rocket extends Paintable {
     }
 
     if(this._life <= 0){
+      this.explode();
       this.die();
     }
   }
@@ -105,6 +106,31 @@ class Rocket extends Paintable {
    */
   ignite(){
     this._isIgnited = true;
+  }
+
+  /** Explode intosparks
+   *
+   */
+  explode(){
+    let radius = 2;
+    let count = 30;
+    let theta = 360 / count;
+
+
+    for(let s = 0 ; s < 30; s++){
+      let spark = new Spark();
+
+      let pointX = ( radius * Math.cos(theta * s) );
+      let pointY = ( radius * Math.sin(theta * s) );
+
+      spark._vector.vector = [pointX, pointY];
+
+      spark.position = this.position.slice();
+
+    }
+
+
+
   }
 
 
