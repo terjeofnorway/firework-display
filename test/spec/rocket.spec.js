@@ -124,7 +124,7 @@
       });
 
 
-      it('should move according to thrust', function(){
+      it('should move according to thrust', () =>{
         rocket.position = [0,0];
         rocket.thrust = 3;
 
@@ -135,7 +135,7 @@
       });
 
 
-      it('should burn fuel', function(){
+      it('should burn fuel', () =>{
         let beforeFuel = 3;
         rocket.fuel = beforeFuel;
 
@@ -144,6 +144,13 @@
         expect(rocket.fuel).toBeLessThanOrEqual(Math.max(0, beforeFuel));
 
       });
+
+      it('should burn life', function(){
+        let previousLife = rocket._life;
+        rocket.burnLife();
+        expect(rocket._life).toBe(previousLife-1);
+      });
+
 
     });
 

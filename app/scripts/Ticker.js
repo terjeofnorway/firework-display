@@ -28,7 +28,7 @@ class Ticker {
 
     this._tickableObjectsArray.forEach((object,index) =>{
       if(object == tickableObject){
-        this._tickableObjectsArray.splice(index,1);
+        delete this._tickableObjectsArray.splice(index,1);
       }
     });
   }

@@ -11,6 +11,7 @@ class Rocket extends Paintable {
     this._tick = 0;
     this._thrust = 2;
     this._fuel = 0;
+    this._life = 100;
     this._vector = new SpeedVector();
     this._isIgnited = false;
 
@@ -26,9 +27,13 @@ class Rocket extends Paintable {
       this.updatePositionBasedOnVector();
       this.updateThrust();
       this.burnFuel();
+      this.burnLife();
+    }
+
+    if(this._life <= 0){
+      this.die();
     }
   }
-
 
   /** Updates the speed vector by one increment based on
    * drag, thrust and gravity
@@ -87,12 +92,21 @@ class Rocket extends Paintable {
     this.fuel -=1;
   }
 
+
+  /** Burn off life by 1 increment
+   *
+   */
+  burnLife(){
+    this._life--;
+  }
+
   /** Igniting the rocked will allow for ticking
    *
    */
   ignite(){
     this._isIgnited = true;
   }
+
 
 
 }
