@@ -36,6 +36,15 @@ class Rocket extends Paintable {
     }
   }
 
+
+  set life (life){
+    this._life = life;
+  }
+
+  get life (){
+    return this._life;
+  }
+
   /** Updates the speed vector by one increment based on
    * drag, thrust and gravity
    */

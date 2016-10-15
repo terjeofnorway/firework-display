@@ -26,6 +26,21 @@
         expect(oldTick).toBeLessThan(newTick);
       });
 
+      it('should set life correctly', () => {
+
+        rocket.life = 123;
+        expect(rocket._life).toEqual(123);
+
+      });
+
+      it('should get life', () => {
+
+        let life = rocket.life;
+
+        expect(life).toEqual(rocket._life);
+
+      });
+
 
       it('should only allow valid positions', function () {
         let invalidPositions = [
@@ -80,6 +95,8 @@
         };
 
       });
+
+
 
       it('should only allow valid fuel', function(){
 
@@ -161,7 +178,11 @@
       });
 
 
+
+
     });
+
+
 
   });
 
