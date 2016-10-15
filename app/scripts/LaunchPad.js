@@ -21,6 +21,7 @@ class LaunchPad extends Paintable {
     let rocket = new Rocket('#ffff00', 2, 5);
     rocket.position = [this.position[0] + (this.width/2), this.position[1]];
     rocket.life = 70 + Math.round((Math.random() * 40));
+    rocket.radius = 2 + Math.round((Math.random() * 4));
     rocket.fuel = 75;
 
     rocket.ignite();

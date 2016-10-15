@@ -13,6 +13,7 @@ class Rocket extends Paintable {
     this._fuel = 0;
     this._life = 100;
     this._weight = 0.5
+    this._radius = 1;
     this._vector = new SpeedVector(this._weight);
     this._isIgnited = false;
   }
@@ -43,6 +44,14 @@ class Rocket extends Paintable {
 
   get life (){
     return this._life;
+  }
+
+  get radius(){
+    return this._radius;
+  }
+
+  set radius(radius){
+    this._radius = radius;
   }
 
   /** Updates the speed vector by one increment based on
@@ -121,16 +130,15 @@ class Rocket extends Paintable {
    *
    */
   explode(){
-    let radius = 2;
-    let count = 30;
+    let count = 16;
     let theta = 360 / count;
 
 
-    for(let s = 0 ; s < 30; s++){
+    for(let s = 0 ; s < count; s++){
       let spark = new Spark();
 
-      let pointX = ( radius * Math.cos(theta * s) );
-      let pointY = ( radius * Math.sin(theta * s) );
+      let pointX = ( this.radius * Math.cos(2 * Math.PI * s / count) );
+      let pointY = ( this.radius * Math.sin(2 * Math.PI * s / count) );
 
       spark._vector.vector = [pointX, pointY];
 

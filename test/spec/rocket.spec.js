@@ -41,6 +41,20 @@
 
       });
 
+      it('should set rocket radius', () => {
+        rocket.radius = 12;
+
+        expect(rocket._radius).toEqual(12);
+
+
+      });
+
+      it('should get rocket radius', () => {
+        rocket.radius = 14;
+        expect(rocket.radius).toEqual(14);
+
+      });
+
 
       it('should only allow valid positions', function () {
         let invalidPositions = [
