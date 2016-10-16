@@ -3,11 +3,15 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     frameworks: ['jasmine'],
     logLevel: config.LOG_DEBUG,
+    proxies: {
+    '/images': 'http://localhost:9000/images'
+    },
     files: [
-      'node_modules/babel-polyfill/dist/polyfill.js',
-      'app/scripts/Base/Tickable.js',
-      'app/scripts/**/*.js',
-      'test/**/*.spec.js'
+      {pattern:'node_modules/babel-polyfill/dist/polyfill.js',watched:true, included:true,served:true},
+      {pattern:'app/scripts/Base/Tickable.js', watched:true, included:true,served:true},
+      {pattern:'app/scripts/**/*.js',watched:true, included:true,served:true},
+      {pattern:'app/images/**/*.*',watched:false, included:false, served:true},
+      {pattern:'test/**/*.spec.js', watched:true, included:true, served:true}
     ],
     preprocessors: {
       'app/scripts/Base/Tickable.js': ['babel'],

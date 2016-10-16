@@ -2,6 +2,7 @@ class Painter {
 
   constructor(){
     this.addCanvasToDocument();
+    this._sprites = new Sprites();
 
     this._canvasContext;
 
@@ -48,8 +49,11 @@ class Painter {
 
   paintObjectOnCanvas (object){
     if(object.position){
+      let spriteData = this._sprites.getRandomSpark();
+
       this._canvasContext.fillStyle = object.color;
-      this._canvasContext.fillRect(object.position[0],object.position[1],object.width,object.height);
+      // this._canvasContext.fillRect(object.position[0],object.position[1],object.width,object.height);
+      this._canvasContext.drawImage(spriteData, object.position[0],object.position[1]);
 
     }
 
